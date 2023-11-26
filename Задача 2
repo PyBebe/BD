@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS Departments (
+    Department_id SERIAL PRIMARY KEY,
+    Department_name VARCHAR(40)
+);
+
+CREATE TABLE IF NOT EXISTS Heads_of_departments (
+    Head_id INTEGER PRIMARY KEY REFERENCES Departments (Department_id),
+    Head_name VARCHAR(40),
+    Profession VARCHAR(40)
+);
+
+CREATE TABLE IF NOT EXISTS Employees (
+    Employee_id SERIAL PRIMARY KEY,
+    Employee_name VARCHAR(40),
+    Department_id INTEGER NOT NULL REFERENCES Departments (Department_id),
+    Head_id INTEGER NOT NULL REFERENCES Heads_of_departments (Head_id)
+);
