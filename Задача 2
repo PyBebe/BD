@@ -15,3 +15,13 @@ CREATE TABLE IF NOT EXISTS Employees (
     Department_id INTEGER NOT NULL REFERENCES Departments (Department_id),
     Head_id INTEGER NOT NULL REFERENCES Heads_of_departments (Head_id)
 );
+
+Или можно просто сделать одну таблицу с внешним ключом Начальника, который будет ссылаться на первичный ключ этой же таблицы.
+
+CREATE TABLE IF NOT EXISTS Employees (
+    Employee_id SERIAL PRIMARY KEY,
+    Employee_name VARCHAR(40),
+    Department VARCHAR(40),
+    Boss INTEGER,
+    CONSTRAINT fk FOREIGN KEY (Boss) REFERENCES Employees (Employee_id)
+);
